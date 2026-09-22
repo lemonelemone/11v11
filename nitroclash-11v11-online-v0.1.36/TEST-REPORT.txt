@@ -1,0 +1,56 @@
+NITROCLASH LOCAL 11v11 v0.1.29 — TEST REPORT
+
+Automated integration coverage:
+- Protocol 27 / build 0.1.29 and 22 unique auto-balanced player places.
+- Public chat plus Y-opened team chat restricted to the sender's existing team.
+- Space, Shift and right mouse share the same authoritative brake flag.
+- Depleted boost cannot pulse from tiny regeneration ticks while boost is held;
+  boost drain is 35.64 per second (1.08x the previous rate).
+- Stable 60 Hz authoritative physics/snapshots restored; 120 Hz input and
+  refresh-rate canvas interpolation retained.
+- Half-size six-line fading top-left chat, readable white system messages,
+  server join/leave events and the G + 1–9 quick-chat sequence.
+- Six-second goal replay payloads are sent to every client and carry a scorer
+  slot only when the last touch belongs to the scoring team.
+- Penalty ball and entry/exit plane use the measured farther-line x=116.8945.
+- The original pitch asset is used unchanged outside 14 small stock-pad masks.
+  Those circles are colour-matched and feathered from the aligned clean
+  reference; stock and added pads then use one active/inactive renderer.
+- Playing snapshots contain strictly increasing authoritative physics ticks;
+  duplicate-tick snapshots are not emitted.
+- Released movement naturally decays instead of coasting forever.
+- Existing-arena routing during normal play, penalties and the rematch lobby;
+  a second public arena is created only after the first reaches 22 players.
+- A penalty-time arrival is benched and excluded from shootout selection.
+- Ten-minute local regulation; local gameplay-inactivity kick disabled.
+- 22 symmetric pads: an inward second goalkeeper pad per side, four group
+  midpoints and two additional middle-line pads.
+- Kickoff resets every pad to available. The added-housing crop renders at a
+  2.0 image radius so its inner visible disc matches the baked stock housing;
+  every active pad uses the normal 1.25-radius shared atlas boost sprite.
+- Earlier goal scoring plane inside unchanged stock goal artwork.
+- Normal and boosted pace, uncapped hard-hit ball speed, and coast damping.
+- Shootout players remain on their original teams.
+- Penalty ball begins on the box line; both active players retain 100 boost.
+- A ball that enters the penalty box and returns out resolves as a miss.
+- Five-round shootout logic, early winner, replay events and rematch tie rule.
+- Spectator ping/chat/replay and 32 non-player spectator places.
+
+Browser coverage:
+- Real Edge userscript launch, kickoff, mouse movement, left-click boost, chat,
+  Tab list, camera toggle, scroll zoom, offline message and retry flow.
+- Real right-click braking, Y team-chat delivery/exclusion and follow-camera
+  off-screen indicator rendering.
+- Browser quick-chat transmission and the six-message display limit.
+- Bottom-left live FPS/ping counter.
+- Physics-synchronised snapshots and interpolation with no overshoot.
+- Input delivery runs independently from rendering at up to 120 Hz.
+- Real Tab-hold test confirms the board opens once and movement slows after
+  steering is released.
+- Cached pitch, pixel-budget cap, desynchronized canvas and refresh-rate render.
+- Real NitroClash page/assets visual screenshot for pad and pitch inspection.
+- Live visual comparison forces one stock pad and one added pad into the used
+  state, confirming there is no custom dark extra-pad state.
+- Replay viewer load, seek, playback, camera and canvas rendering.
+
+No deployment or GitHub push was performed.

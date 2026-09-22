@@ -1,0 +1,206 @@
+NITROCLASH 11v11 ONLINE — EXPERIMENTAL v0.1.36 (PROTOCOL 31)
+
+This stays separate from hosted 4v4 and SUPER NC. Nothing is deployed.
+
+V0.1.36 FRANKFURT ONLINE DEFAULT
+---------------------------------
+- The shareable userscript now starts at wss://one1v11.onrender.com by default.
+- It uses a new saved-address key, so an earlier local 127.0.0.1 setting cannot
+  override the Frankfurt default after installation.
+- The script is labelled 11v11 ONLINE / Frankfurt test server. The address
+  field remains available if the server needs to move later.
+- This source package was not uploaded or deployed automatically. Replace the
+  userscript file in GitHub manually if you want the raw install link updated.
+
+V0.1.33 TEST MATCHES, HOSTED SERVER FIELD AND TEASER REMOVAL
+-------------------------------------------------------------
+- Regulation matches now last two minutes for testing. The server owner can
+  change this with the NC11_MATCH_SECONDS environment variable.
+- The launch panel has a saved server-address field. Keep
+  ws://127.0.0.1:8011 for local play or paste a friend's public wss:// address.
+- The obsolete #nc-11v11-announcement teaser created by Hosted 4v4 is hidden
+  with a targeted CSS rule. No other Hosted 4v4 or SUPER NC UI is changed.
+- See PUBLISHING-v0.1.33.md for the recommended server and HTTPS/WSS setup.
+
+V0.1.32 CORNER SAFETY AND FIFTH-LINE VISIBILITY
+------------------------------------------------
+- The corner exclusion circle is three times larger (21 world units) and is
+  centred on the exact position where the contested ball stalled.
+- The corner taker now starts inside the pitch for an inward run-up. Normal
+  pitch-wall collision remains active, so neither the player nor ball can use
+  the restart to escape outside the map.
+- Opponents found inside the corner circle are moved through it toward the
+  pitch centre, preventing the enlarged circle from stranding them outside.
+- C and mouse-wheel camera controls continue to work during corner restarts.
+- A team's coloured defensive-fifth line is hidden until all five permitted
+  defenders are inside that fifth.
+
+V0.1.31 DEFENSIVE-FIFTH AND STALLED-BALL RULES
+------------------------------------------------
+- Five-player maximum in each team's own defensive fifth during live play.
+- First five entrants keep priority; kickoff and countdown are exempt.
+- Contested 10-second corner stalls award the attacking team a corner.
+- The clock pauses, opponents are excluded from the corner circle, and the
+  taker has eight seconds with a doubled first ball response.
+- An unused corner becomes a goal kick; unused restarts then alternate.
+- Opponents stay outside the defending fifth until a goal kick is taken.
+- A stricter 15-second contested wall stall releases the ball and blockers.
+
+INSTALL / UPDATE
+1. Extract this entire ZIP into a new folder.
+2. Close every older NitroClash Local 11v11 command window.
+3. Double-click this folder's start-local.cmd and keep it open.
+4. Replace the old Tampermonkey script with nitroclash-local-11v11.user.js.
+5. Disable older versions of the local 11v11 script.
+6. Fully reload https://nitroclash.io/ and choose LOCAL 11v11 ONLY.
+
+The command window should say:
+NitroClash local 11v11 listening on ws://127.0.0.1:8011
+
+CONTROLS
+- WASD / arrows: move
+- Mouse: steer when movement keys are not held
+- Hold left mouse: boost
+- Space, Shift or right mouse: brake (all use the same brake input)
+- C: toggle full-pitch and follow camera
+- Mouse wheel in follow camera: zoom from 0.40x to 3.50x
+- Tab: player list and ping
+- T or Enter: open public chat; Y: open team chat
+- Enter sends; Escape closes
+- G, then 1–9 within five seconds: send the configured quick-chat message
+
+V0.1.29 PITCH ROLLBACK AND SMOOTHNESS CORRECTION
+- Restores the exact v0.1.27 original pitch image. The v0.1.28 whole-pitch
+  replacement was out of scope and has been removed.
+- Only the 14 original boost-pad circles are patched from the aligned pad-free
+  reference. The rest of the pitch, goals, walls, colours and markings remain
+  from the original pitch asset.
+- Authoritative physics and snapshots are restored from 90 Hz to the previously
+  smooth 60 Hz cadence. Input remains 120 Hz and rendering remains tied to the
+  display refresh rate with snapshot interpolation.
+- The 1.08x boost drain and empty-tank anti-pulsing behaviour are preserved with
+  their per-tick values recalculated for 60 Hz.
+
+V0.1.28 CONTROLS, CHAT AND CAMERA
+- V0.1.28 briefly used 90 Hz physics/snapshots; v0.1.29 reverts that experiment
+  because its tighter Node timer cadence produced uneven visible delivery.
+- A partially regenerated empty tank cannot trigger intermittent boost bursts.
+  Regeneration pauses while boost remains held. Boost drains 1.08x faster.
+- V0.1.29 restores the original pitch and applies pad-free artwork only inside
+  the original pad circles before the shared boost renderer is drawn.
+- Chat is half-sized, uses white readable text and still fades after six lines.
+  Y opens team-only chat; T or Enter opens public chat.
+- Goal replays now show the preceding six seconds.
+- Follow camera draws small edge arrows for off-screen players and the ball.
+- The area outside the pitch, including the cleaned goal-side strips, is black.
+- Right mouse brakes through exactly the same input flag as Space and Shift.
+
+V0.1.27 CHAT, BOOST LAYOUT AND GOAL REPLAYS
+- Chat now appears in the top-left like normal NitroClash, keeps at most six
+  lines, and fades fully away 6.5 seconds after the newest message.
+- Player names are team-coloured. Player, spectator and system text is readable
+  in white against the game. Player and spectator chat use the server.
+- G opens a five-second quick-chat window. Press 1–9 during that window to
+  send one of the configured phrases; number keys do nothing after it expires.
+- There are now 22 symmetrically arranged boost locations. A second pad was
+  placed inward from the existing goalkeeper pad on each side, and two gaps on
+  the middle line were filled.
+- The original 14 stock housings remain untouched. Added pads use the extracted
+  stock housing at the measured visible size, and every available pad receives
+  the same original NitroClash atlas boost sprite at normal size.
+- All pads become available again whenever a kickoff is prepared.
+- After a regulation goal, everybody receives a server-recorded replay of the
+  preceding six seconds. Follow-camera users track the detected scorer. If a
+  scorer cannot be identified safely, the replay stays neutral.
+
+V0.1.26 PENALTY SPOT AND IDENTICAL PAD ART
+- The penalty ball is now on the farther outer penalty-area line at x=116.8945,
+  measured directly from the 4096-pixel stock pitch. It is no longer between
+  the nearer and farther markings.
+- Removed the custom dark used-pad drawing completely.
+- The added pads use a background-subtracted extraction of a real stock
+  housing. V0.1.27 renders the crop at a 2.0 image radius so the visible inner
+  disc matches the baked housings without enlarging its transparent falloff.
+- Available yellow boost artwork was unified across the then-current locations.
+- Used housings now retain the same ring/highlight/shadow behaviour. Natural
+  colour variation from the underlying light/dark grass stripes is preserved,
+  just as it is for the 14 housings baked into the stock pitch.
+
+V0.1.25 SMOOTHNESS AND TAB CORRECTION RETAINED
+- Physics and snapshots no longer use two independent 60 Hz timers. A snapshot
+  is now published only after an authoritative physics step completes, removing
+  duplicate-state / skipped-state timing drift.
+- Client interpolation can no longer extrapolate beyond the newest snapshot.
+  This prevents visible backward corrections when the next update arrives.
+- Input transmission runs independently at up to 120 Hz instead of being tied
+  to canvas rendering.
+- Holding Tab builds the scoreboard once rather than rebuilding it on every key
+  repeat. Mouse steering and boost pause while the board is open, key releases
+  are sent immediately, and released movement now naturally loses speed.
+- The goals are intentionally unchanged: they remain the clean stock-sized
+  14.0625 opening. This release does not enlarge them.
+
+V0.1.24 CHANGES RETAINED
+- A small bottom-left counter reports actual rendered FPS and current WebSocket
+  round-trip ping.
+- Players and the ball now interpolate between consecutive 60 Hz authoritative
+  snapshots. This addresses the visible frame-step effect without changing the
+  server's physics or making movement depend on the monitor refresh rate.
+- Canvas resolution is also limited to 2560x1440 worth of pixels on unusually
+  large/high-DPI screens, reducing GPU work while preserving normal 1080p and
+  1440p output.
+- The original 14 pads retain their genuine housings baked into the stock pitch.
+  The four added pads now receive a centred, complete outer shell instead of the
+  incomplete off-centre extracted image. Every available pad retains the same
+  1.25-world-unit yellow boost sprite.
+- Play 11v11 always selects an existing non-full public arena, including during
+  penalties and the rematch lobby. Another arena is created only when every
+  existing public arena has all 22 player places occupied.
+- A player joining during penalties reserves their auto-balanced place but is
+  benched and excluded from penalty selection until the next match.
+
+V0.1.23 CHANGES RETAINED
+- The four added pads are at exact midpoints between the existing outer and
+  central pad groups, maintaining horizontal and vertical symmetry.
+- The stock clean goal artwork and opening are retained. The scoring plane is
+  one world unit nearer the pitch, so a ball clearly inside the net counts
+  without needing another push deep into the net.
+- Local regulation is restored to ten minutes.
+- Penalty takers and goalkeepers are selected only from their existing team.
+  Both have unlimited boost during the shot. The ball starts on the penalty-box
+  line, and a shot ends as a miss if it enters the box and then comes back out.
+- The compact penalty scoreboard uses blue/red team colours, attempt dots and a
+  centre score. It is deliberately not purple.
+- Rendering caches the cleaned pitch once, caps high-DPI rendering at 1.5x and
+  requests a low-latency canvas. Authoritative physics and snapshots remain at
+  60 Hz; display rendering and input still follow the user's refresh rate, up
+  to 120 Hz input sampling.
+- The local inactivity kick remains disabled. A future public server can set
+  NC11_INACTIVITY_KICK_MS=10000 to remove players who provide no gameplay input
+  for ten seconds while a match is playing.
+
+CURRENT GAMEPLAY
+- 150x84.375 pitch and clean stock-sized 14.0625 goal openings.
+- Ball radius is 1.75 times player radius.
+- No artificial ball speed cap: repeated sufficiently hard contacts can push
+  the ball above the boosted player top speed. Ball damping is 0.25.
+- Player speed is 12 normally and 24 while boosting.
+- Pads refill 50 boost and respawn after seven seconds.
+- Kickoffs give 50 boost and use a mirrored 4-4-3 formation.
+- 11 players per team plus 32 separate ordinary spectator places.
+- Public joining auto-balances teams; party-link creation is not shown.
+- Rematch voting lasts 60 seconds; ties keep the same teams.
+
+REPLAYS
+- Download replay creates a .nc11replay file.
+- Open nc11-replay-viewer.html and choose or drop the replay.
+- .nc11replay is separate from stock .ncr because the closed original replay
+  protocol cannot safely represent 22 player slots or the custom shootout state.
+
+IMPORTANT LIMITATION
+- The closed NitroClash client does not expose its exact production controller
+  and collision source code. This mode uses measured prototype values, genuine
+  browser artwork and rigid-body momentum; it cannot honestly claim byte-for-
+  byte identity with private production physics.
+- Local testing only. No deployment or GitHub push is included.
+- Do not run npm install; planck.mjs is already included.
