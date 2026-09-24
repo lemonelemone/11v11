@@ -1,0 +1,55 @@
+NITROCLASH 11v11 — FRANKFURT v0.1.36
+
+PLAYER INSTALL / UPDATE
+1. Replace the old Tampermonkey userscript with nitroclash-local-11v11.user.js.
+2. Disable older NitroClash 11v11 userscripts.
+3. Fully reload https://nitroclash.io/.
+4. Use the NITROCLASH 11v11 panel and choose Join 11v11 or Spectate.
+
+The Frankfurt connection is built in. Players do not need to enter or see a
+server address. The v0.1.36 userscript requires the v0.1.36 Frankfurt server
+(protocol 31).
+
+CONTROLS
+- Move: WASD, arrow keys or mouse steering
+- Boost: left mouse
+- Brake: right mouse, Space or Shift
+- Public chat: T or Enter
+- Team chat: Y
+- Quick chat: G, then 1–9
+- Scoreboard: hold Tab
+- Camera mode: C
+- Follow-camera zoom: mouse wheel (minimum 0.40x)
+- Minimap: M
+- Admin panel: B, then enter the admin password
+
+V0.1.36
+- Production-labelled Frankfurt client with no testing label.
+- The server address is fixed internally and is not displayed in the top-right
+  panel, the scoreboard or connection-error messages.
+- B opens a password-protected Admin panel. The default password is
+  Chicken999! and can be overridden with NC11_ADMIN_PASSWORD on the server.
+- Admin Meow ON/OFF and Custom/Default quick-chat changes apply to everyone.
+- Mouse controls continue through the Admin panel, focused password fields and
+  the fullscreen cat overlay.
+- Lightweight team-coloured goal explosion.
+- The meow image remains fullscreen for 1 second.
+- Public gameplay inactivity kick is 20 seconds of no actual position change;
+  repeated stationary input cannot bypass it. Removal is broadcast to everyone.
+- Boost held while braking shows the glow without consuming boost, and the
+  movement indicator can still be aimed while braking.
+- The boost bar is slightly longer and semi-transparent.
+- The 4v4 release announcement and hosted-model badge are hidden by 11v11.
+- Timestamp interpolation buffer is 34 ms instead of 50 ms, cutting one frame
+  of rendering-only delay while preserving jitter protection.
+- 60 Hz authoritative physics, 120 Hz input and timestamped buffered rendering.
+- Original pitch dimensions and artwork, penalties and six-second goal replays.
+
+SERVER OWNER
+- Deploy this folder's server.mjs and package.json to the Frankfurt service.
+- Use Node 24.
+- Start command: npm start
+- The service must expose secure WebSockets through HTTPS/WSS.
+- Do not mix this protocol-31 server with an older userscript.
+
+Nothing in this ZIP deploys or uploads itself.
