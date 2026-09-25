@@ -1,0 +1,87 @@
+NITROCLASH 11v11 AMSTERDAM — GITHUB AND SERVER INSTRUCTIONS
+
+
+YOUR PART — FIRST GITHUB UPLOAD
+
+1. Download and extract the Amsterdam ZIP.
+
+2. Open this GitHub repository:
+   https://github.com/lemonelemone/11v11
+
+3. Keep one permanent folder named exactly:
+   nitroclash-11v11-amsterdam
+
+4. If that folder does not exist yet:
+   - Click Add file, then Create new file.
+   - In the filename box enter:
+     nitroclash-11v11-amsterdam/README.md
+   - Enter any short text, such as "Amsterdam server".
+   - Click Commit changes.
+
+5. Open the new nitroclash-11v11-amsterdam folder on GitHub.
+
+6. Click Add file, then Upload files.
+
+7. Drag in the CONTENTS of the extracted release folder—not the outer
+   versioned folder itself. package.json and server.mjs must end up here:
+
+   nitroclash-11v11-amsterdam/package.json
+   nitroclash-11v11-amsterdam/server.mjs
+
+   Also upload planck.mjs, the assets folder and the other supplied files.
+
+8. Click Commit changes.
+
+
+YOUR PART — LATER UPDATES
+
+1. Open the same permanent GitHub folder:
+   nitroclash-11v11-amsterdam
+
+2. Click Add file, then Upload files.
+
+3. Upload the contents of the newer release folder and commit the changes.
+
+4. Do not create a new v0.1.xx server folder. Keeping the same permanent
+   folder means your friend's server can update automatically.
+
+
+YOUR FRIEND'S PART — ONE-TIME SERVER SETUP
+
+1. On his hosting service, create a Node.js web service from this repository:
+   https://github.com/lemonelemone/11v11
+
+2. Select the main branch and enable Auto Deploy.
+
+3. Enter these settings:
+
+   Root Directory: nitroclash-11v11-amsterdam
+   Build Command: npm install
+   Start Command: npm start
+   Node version: 24
+
+4. Add these environment variables:
+
+   NC11_HOST=0.0.0.0
+   NC11_ADMIN_PASSWORD=Chicken999!
+
+5. Deploy once.
+
+6. Check this address:
+   https://nitroclashio.duckdns.org/health
+
+   If it displays JSON containing "ok":true, it is working.
+
+
+AFTER THE ONE-TIME SETUP
+
+Whenever you commit updated files to the permanent GitHub folder, the hosting
+service automatically redeploys them. Your friend does not need to change the
+root directory, commands, password setting or WebSocket address.
+
+Players automatically connect to:
+   wss://nitroclashio.duckdns.org
+
+NOTE: These automatic-deployment steps require a hosting service with a
+"Deploy from GitHub" or "Connect repository" option. If his service does not
+have that option, tell Codex the name of his hosting provider for exact steps.
